@@ -1,0 +1,18 @@
+<h1><center>Blog Homepage</center></h1>
+
+{% for i in b %}
+
+<a href="{% url 'blog:detail' i.id%}">{{ i.title }}</a>
+<br><br>
+{{ i.date }}
+<br><br>
+
+<img src="{{ i.image.url }}" height="250" width="250" > <br>
+
+<br>
+
+{{ i.description }}
+
+<br><br>
+
+{% endfor %}

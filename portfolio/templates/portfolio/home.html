@@ -1,0 +1,32 @@
+<h1><center>Portfolio Homepage.</center></h1>
+{% load static %}
+
+<h3><a href="{% url 'blog:all_blogs' %}">Blog</a></h3>
+
+<br><br><br>
+
+
+<img src="{% static 'portfolio/Youtube.PNG' %}" height="250" width="250">
+
+<a href="{% static 'portfolio/Youtube.PNG' %}" height="250" width="250">LINK FOR PIC IN HOME.HTML</a>
+
+<br>
+
+<br><br><br>
+
+{% for proj in projects %}
+
+{{ proj.title }} <br>
+
+{{ proj.description }}<br>
+
+<img src="{{ proj.image.url }}" height="250" width="250" > <br>
+
+{% if proj.url %}
+
+<a href="{{ proj.url }}">Youtube link</a>
+
+{%endif%}
+
+<br><br><br><br><br><br>
+{% endfor %}
