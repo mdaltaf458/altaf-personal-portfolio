@@ -8,3 +8,7 @@ class Project(models.Model):
     image=models.ImageField(upload_to='portfolio/images')
     url=models. URLField(blank=True)
 
+    def __str__(self):                             #This function will display title of project we add directly in admin (browser) insaed of project object(1)
+        return self.title
+
+

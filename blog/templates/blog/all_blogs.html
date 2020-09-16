@@ -1,18 +1,39 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+{% extends 'portfolio/base.html' %}
+
+{% block page %}
+
 <h1><center>Blog Homepage</center></h1>
 
-{% for i in b %}
 
-<a href="{% url 'blog:detail' i.id%}">{{ i.title }}</a>
-<br><br>
-{{ i.date }}
-<br><br>
+    <h3>Altaf has written {{ b.count }} blog{{ b.count|pluralize }}</h3>
 
-<img src="{{ i.image.url }}" height="250" width="250" > <br>
 
-<br>
+<div class="row">
+  {% for i in b %}
+  <div class="col-lg-4 col-md-6">
 
-{{ i.description }}
+    {% if i.url %}
+    <a href="{{ i.url }}">
+      <img src="{{ i.image.url }}" class="img-fluid mb-2">
+    </a>
+    {% else %}
 
-<br><br>
+    <img src="{{ i.image.url }}" class="img-fluid mb-2">
+    {% endif %}
+    <a href="{% url 'blog:detail' i.id%}">{{ i.title}}</a>
+    <p>{{ i.description }}</p>
 
-{% endfor %}
+  </div>
+  {% endfor %}
+</div>
+
+
+{% endblock %}
+
+<!--{{ i.description|truncatechars:50}} this will limit the descrription chars on webpage upto 50 chars rest will be shown in dots...-->
+
+
+
+<!--{{ i.description|safe|truncatechars:50}} if you write html tags in admin page while adding desription in adding objevt then to display that html tags working on webpage add safe-->

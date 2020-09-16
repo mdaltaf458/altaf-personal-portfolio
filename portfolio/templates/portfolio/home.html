@@ -1,32 +1,32 @@
-<h1><center>Portfolio Homepage.</center></h1>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+{% extends 'portfolio/base.html' %}
+
+{% block page %}
+
+
+<h1><center>Altaf's Portfolio Homepage.</center></h1>
 {% load static %}
 
-<h3><a href="{% url 'blog:all_blogs' %}">Blog</a></h3>
-
 <br><br><br>
 
+<div class="row">
+  {% for proj in projects %}
+  <div class="col-lg-4 col-md-6">
 
-<img src="{% static 'portfolio/Youtube.PNG' %}" height="250" width="250">
+    {% if proj.url %}
+    <a href="{{ proj.url }}">
+      <img src="{{ proj.image.url }}" class="img-fluid mb-2">
+    </a>
+    {% else %}
 
-<a href="{% static 'portfolio/Youtube.PNG' %}" height="250" width="250">LINK FOR PIC IN HOME.HTML</a>
+    <img src="{{ proj.image.url }}" class="img-fluid mb-2">
+    {% endif %}
+    <h3>{{ proj.title }}</h3>
+    <p>{{ proj.description }}</p>
 
-<br>
 
-<br><br><br>
+  </div>
+  {% endfor %}
+</div>
 
-{% for proj in projects %}
-
-{{ proj.title }} <br>
-
-{{ proj.description }}<br>
-
-<img src="{{ proj.image.url }}" height="250" width="250" > <br>
-
-{% if proj.url %}
-
-<a href="{{ proj.url }}">Youtube link</a>
-
-{%endif%}
-
-<br><br><br><br><br><br>
-{% endfor %}
+{% endblock %}
